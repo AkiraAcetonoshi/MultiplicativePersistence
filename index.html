@@ -69,7 +69,7 @@
         }
         function calculatePersistence(number){
           var persistence = 0;
-          var currentNumber = number;
+          var currentNumber = number; // It is important to start the loop at the right point, or persistence won't be accurate
           while (currentNumberLength > 1){
             //Calculate the product of the digits 
             currentNumber=calculateProductOfDigits(currentNumber);
