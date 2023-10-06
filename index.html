@@ -40,13 +40,13 @@
             const number = parseFloat(numberInput.value);
 
             // Check if the value is a valid number
-            if (!isNaN(number)) {
+            if (Number.isInteger(number)) {
                 // if the number is an integer, then we can calculate its persistence
                 var persistence = calculatePersistence(number);
                 resultParagraph.textContent = "The multiplicative persistence is " + persistence ;
             } else {
                 // Handle the case where the input is not a valid number
-                resultParagraph.textContent = "Please enter a valid number.";
+                resultParagraph.textContent = "Please enter an integer number.";
             }
         });
       </script>
@@ -55,13 +55,14 @@
 
         // Here are the useful functions for this page
 
+
+        // Recursive function to calculate persistence of integers.
         function calculatePersistence(number){
-          var persistence = 0;
-          var currentNumber = number; // It is important to start the loop at the right point, or persistence won't be accurate
-          while (currentNumber >= 10){
+          var persistence = 0; // This will be used as a counter to  count number of iterations it takes to reduce the number
+          var currentNumber = number; 
+          while (currentNumber >= 10){ // Stay in the loop as long as the number has more than 2 digits, that is, greater than 10
             //Calculate the product of the digits 
             currentNumber=calculateProductOfDigits(currentNumber);
-            //Evaluate the length of it
             alert(currentNumber)
             persistence = persistence + 1;
           }
@@ -86,9 +87,6 @@
         }
 
       </script>
-
-      
-
 
     </main>
     <footer></footer>
