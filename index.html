@@ -23,14 +23,21 @@
 
       <button id="multiplyButton">Evaluate persistence</button>
       <p id="result"></p>
+      <div id="containerCalculusDetails">
+        <ul id="calculusDetailsList">
+
+        </ul>
+      </div>
+
       
       <script>
         // Input-Output
         // Get references to the input field and the result paragraph
         const numberInput = document.getElementById("InputNumber");
         const resultParagraph = document.getElementById("result");
+        const calculusList = document.getElementById("calculusDetailsList");
 
-        // Trigger
+        // Triggerstep3
         // Get reference to the Multiply button
         const multiplyButton = document.getElementById("multiplyButton");
 
@@ -43,8 +50,27 @@
             if (Number.isInteger(number)) {
                 // if the number is an integer, then we can calculate its persistence
                 var persistence = calculatePersistence(number);
+                var sequenceOfNumbers = getNumberSequence(number);
                 resultParagraph.textContent = "The multiplicative persistence is " + persistence ;
-            } else {
+                
+                console.log("sequenceOfNumbers:", sequenceOfNumbers)
+
+                // Clear the calculus list from any previous calculations
+                calculusList.innerHTML = "";
+                //Add a new line of each element in the sequenceOfNumbers array 
+                for (let i = 0; i <= sequenceOfNumbers.length-1; i++) { 
+                  // add the element to the list
+                  let calculusText = sequenceOfNumbers[i].toString()
+                  // Split the input string into an array of characters
+                  let calculusTextDigits = calculusText.split('');
+                  // Join the characters with "x" between them
+                  calculusText = calculusTextDigits.join(' x ');
+                  calculusText = calculusText + " = ";
+                  calculusText = calculusText + sequenceOfNumbers[i+1].toString();
+                  addItemToList(calculusText);
+                };   
+            }     
+            else {
                 // Handle the case where the input is not a valid number
                 resultParagraph.textContent = "Please enter an integer number.";
             }
@@ -63,11 +89,24 @@
           while (currentNumber >= 10){ // Stay in the loop as long as the number has more than 2 digits, that is, greater than 10
             //Calculate the product of the digits 
             currentNumber=calculateProductOfDigits(currentNumber);
-            alert(currentNumber)
             persistence = persistence + 1;
           }
 
           return persistence;
+        }
+
+        function getNumberSequence(number){
+          var persistence = 0; // This will be used as a counter to  count number of iterations it takes to reduce the number
+          var currentNumber = number; 
+          var sequenceOfNumbers = [number] // This array will help memorise all of the steps, to display them later
+          while (currentNumber >= 10){ // Stay in the loop as long as the number has more than 2 digits, that is, greater than 10
+            //Calculate the product of the digits 
+            currentNumber=calculateProductOfDigits(currentNumber);
+            // Add calculated number to the array
+            sequenceOfNumbers.push(currentNumber)
+          }
+          // Return the entire array
+          return sequenceOfNumbers;
         }
 
         // A function to calculate the product of the digits of a number
@@ -85,6 +124,24 @@
               });
           return digitsProduct;
         }
+
+        // A test function to add an element to a list 
+        function addItemToList(itemText) {
+
+            if (itemText) {
+                // Get a reference to the <ul> element
+                let myList = document.getElementById("calculusDetailsList");
+
+                // Create a new <li> element
+                let newItem = document.createElement("li");
+
+                // Set the content of the <li> element
+                newItem.textContent = itemText;
+
+                // Append the <li> element to the <ul> element
+                myList.appendChild(newItem);
+            }
+        }    
 
       </script>
 
