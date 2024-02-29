@@ -1,151 +1,206 @@
 <!DOCTYPE html>
 <html lang="">
 
-  <head>
-    <meta charset="utf-8">
-    <title>Persistence Multiplicative</title>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>Persistence Multiplicative</title>
+  <!-- Link to the seven segment font for the numbers -->
+  <link href="https://fonts.cdnfonts.com/css/seven-segment" rel="stylesheet">
 
-  <body>
-    <header></header>
-    <main>
+  <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+  <header>
+
+  </header>
+  <main>
+    <section class="info-section">
       <h1>Multiplicative persistence calculator</h1>
-      <p>In mathematics, the persistence of a number is the number of times one must apply a given operation to an integer before reaching a fixed point at which the operation no longer alters the number.<br>
+      <p>In mathematics, the persistence of a number is the number of times one must apply a given operation to an
+        integer
+        before reaching a fixed point at which the operation no longer alters the number.<br>
 
-      Usually, this involves additive or multiplicative persistence of a non-negative integer, which is how often one has to replace the number by the sum or product of its digits until one reaches a single digit. Because the numbers are broken down into their digits, the additive or multiplicative persistence depends on the radix. In the remainder of this article, base ten is assumed.<br>
+        Usually, this involves additive or multiplicative persistence of a non-negative integer, which is how often one
+        has to replace the number by the sum or product of its digits until one reaches a single digit. Because the
+        numbers are broken down into their digits, the additive or multiplicative persistence depends on the radix. In
+        the
+        remainder of this article, base ten is assumed.<br>
 
-      The single-digit final state reached in the process of calculating an integer's additive persistence is its digital root. Put another way, a number's additive persistence counts how many times we must sum its digits to arrive at its digital root.</p>
+        The single-digit final state reached in the process of calculating an integer's additive persistence is its
+        digital root. Put another way, a number's additive persistence counts how many times we must sum its digits to
+        arrive at its digital root.</p>
       <br>
       <br>
-      <label for="number">InputNumber:</label>
-      <input type="number" id="InputNumber" name="InputNumber">
+    </section>
+    <div class="calculator">
+      <div class="screen">
+        <label for="number">InputNumber:</label>
+        <input type="number" id="InputNumber" name="InputNumber">
 
-      <button id="multiplyButton">Evaluate persistence</button>
-      <p id="result"></p>
-      <div id="containerCalculusDetails">
-        <ul id="calculusDetailsList">
 
-        </ul>
+
+        <div id="containerCalculusDetails">
+          <ul id="calculusDetailsList">
+
+          </ul>
+        </div>
+        <p id="result"></p>
       </div>
+      <button class="calculator-button">
+        0
+      </button>
+      <button class="calculator-button" id="multiplyButton">
+        CHECK
+      </button>
+      <button class="calculator-button">
+        1
+      </button>
+      <button class="calculator-button">
+        2
+      </button>
+      <button class="calculator-button">
+        3
+      </button>
+      <button class="calculator-button">
+        4
+      </button>
+      <button class="calculator-button">
+        5
+      </button>
+      <button class="calculator-button">
+        6
+      </button>
+      <button class="calculator-button">
+        7
+      </button>
+      <button class="calculator-button">
+        8
+      </button>
+      <button class="calculator-button">
+        9
+      </button>
 
-      
-      <script>
-        // Input-Output
-        // Get references to the input field and the result paragraph
-        const numberInput = document.getElementById("InputNumber");
-        const resultParagraph = document.getElementById("result");
-        const calculusList = document.getElementById("calculusDetailsList");
+    </div>
 
-        // Triggerstep3
-        // Get reference to the Multiply button
-        const multiplyButton = document.getElementById("multiplyButton");
 
-        // Add an event listener to the button
-        multiplyButton.addEventListener("click", function () {
-            // Get the value entered by the user
-            const number = parseFloat(numberInput.value);
+    <script>
+      // Input-Output
+      // Get references to the input field and the result paragraph
+      const numberInput = document.getElementById("InputNumber");
+      const resultParagraph = document.getElementById("result");
+      const calculusList = document.getElementById("calculusDetailsList");
 
-            // Check if the value is a valid number
-            if (Number.isInteger(number)) {
-                // if the number is an integer, then we can calculate its persistence
-                var persistence = calculatePersistence(number);
-                var sequenceOfNumbers = getNumberSequence(number);
-                resultParagraph.textContent = "The multiplicative persistence is " + persistence ;
-                
-                console.log("sequenceOfNumbers:", sequenceOfNumbers)
+      // Triggerstep3
+      // Get reference to the Multiply button
+      const multiplyButton = document.getElementById("multiplyButton");
 
-                // Clear the calculus list from any previous calculations
-                calculusList.innerHTML = "";
-                //Add a new line of each element in the sequenceOfNumbers array 
-                for (let i = 0; i <= sequenceOfNumbers.length-1; i++) { 
-                  // add the element to the list
-                  let calculusText = sequenceOfNumbers[i].toString()
-                  // Split the input string into an array of characters
-                  let calculusTextDigits = calculusText.split('');
-                  // Join the characters with "x" between them
-                  calculusText = calculusTextDigits.join(' x ');
-                  calculusText = calculusText + " = ";
-                  calculusText = calculusText + sequenceOfNumbers[i+1].toString();
-                  addItemToList(calculusText);
-                };   
-            }     
-            else {
-                // Handle the case where the input is not a valid number
-                resultParagraph.textContent = "Please enter an integer number.";
-            }
+      // Add an event listener to the button
+      multiplyButton.addEventListener("click", function () {
+        // Get the value entered by the user
+        const number = parseFloat(numberInput.value);
+
+        // Check if the value is a valid number
+        if (Number.isInteger(number)) {
+          // if the number is an integer, then we can calculate its persistence
+          var persistence = calculatePersistence(number);
+          var sequenceOfNumbers = getNumberSequence(number);
+          resultParagraph.textContent = "multiplicative persistence : " + persistence;
+
+          console.log("sequenceOfNumbers:", sequenceOfNumbers)
+
+          // Clear the calculus list from any previous calculations
+          calculusList.innerHTML = "";
+          //Add a new line of each element in the sequenceOfNumbers array 
+          for (let i = 0; i <= sequenceOfNumbers.length - 1; i++) {
+            // add the element to the list
+            let calculusText = sequenceOfNumbers[i].toString()
+            // Split the input string into an array of characters
+            let calculusTextDigits = calculusText.split('');
+            // Join the characters with "x" between them
+            calculusText = calculusTextDigits.join(' * ');
+            calculusText = calculusText + " = ";
+            calculusText = calculusText + sequenceOfNumbers[i + 1].toString();
+            addItemToList(calculusText);
+          };
+        }
+        else {
+          // Handle the case where the input is not a valid number
+          resultParagraph.textContent = "Please enter an integer number.";
+        }
+      });
+    </script>
+
+    <script>
+
+      // Here are the useful functions for this page
+
+
+      // Recursive function to calculate persistence of integers.
+      function calculatePersistence(number) {
+        var persistence = 0; // This will be used as a counter to  count number of iterations it takes to reduce the number
+        var currentNumber = number;
+        while (currentNumber >= 10) { // Stay in the loop as long as the number has more than 2 digits, that is, greater than 10
+          //Calculate the product of the digits 
+          currentNumber = calculateProductOfDigits(currentNumber);
+          persistence = persistence + 1;
+        }
+
+        return persistence;
+      }
+
+      function getNumberSequence(number) {
+        var persistence = 0; // This will be used as a counter to  count number of iterations it takes to reduce the number
+        var currentNumber = number;
+        var sequenceOfNumbers = [number] // This array will help memorise all of the steps, to display them later
+        while (currentNumber >= 10) { // Stay in the loop as long as the number has more than 2 digits, that is, greater than 10
+          //Calculate the product of the digits 
+          currentNumber = calculateProductOfDigits(currentNumber);
+          // Add calculated number to the array
+          sequenceOfNumbers.push(currentNumber)
+        }
+        // Return the entire array
+        return sequenceOfNumbers;
+      }
+
+      // A function to calculate the product of the digits of a number
+      function calculateProductOfDigits(number) {
+
+        // Decompose the number into its digits, and store them into an array
+        const numberString = number.toString();
+        const digits = numberString.match(/\d/g); // regular expression is used
+        const digitsInt = digits.map(digit => parseInt(digit, 10)); //converts the digits from string format to int format inside the array
+
+        // Multiply all of the digits together, one by one
+        var digitsProduct = 1;
+        digitsInt.forEach(function (element) {
+          digitsProduct = digitsProduct * element;
         });
-      </script>
+        return digitsProduct;
+      }
 
-      <script>
+      // A test function to add an element to a list 
+      function addItemToList(itemText) {
 
-        // Here are the useful functions for this page
+        if (itemText) {
+          // Get a reference to the <ul> element
+          let myList = document.getElementById("calculusDetailsList");
 
+          // Create a new <li> element
+          let newItem = document.createElement("li");
 
-        // Recursive function to calculate persistence of integers.
-        function calculatePersistence(number){
-          var persistence = 0; // This will be used as a counter to  count number of iterations it takes to reduce the number
-          var currentNumber = number; 
-          while (currentNumber >= 10){ // Stay in the loop as long as the number has more than 2 digits, that is, greater than 10
-            //Calculate the product of the digits 
-            currentNumber=calculateProductOfDigits(currentNumber);
-            persistence = persistence + 1;
-          }
+          // Set the content of the <li> element
+          newItem.textContent = itemText;
 
-          return persistence;
+          // Append the <li> element to the <ul> element
+          myList.appendChild(newItem);
         }
+      }
 
-        function getNumberSequence(number){
-          var persistence = 0; // This will be used as a counter to  count number of iterations it takes to reduce the number
-          var currentNumber = number; 
-          var sequenceOfNumbers = [number] // This array will help memorise all of the steps, to display them later
-          while (currentNumber >= 10){ // Stay in the loop as long as the number has more than 2 digits, that is, greater than 10
-            //Calculate the product of the digits 
-            currentNumber=calculateProductOfDigits(currentNumber);
-            // Add calculated number to the array
-            sequenceOfNumbers.push(currentNumber)
-          }
-          // Return the entire array
-          return sequenceOfNumbers;
-        }
+    </script>
 
-        // A function to calculate the product of the digits of a number
-        function calculateProductOfDigits(number){
+  </main>
+  <footer></footer>
+</body>
 
-          // Decompose the number into its digits, and store them into an array
-          const numberString = number.toString();
-          const digits = numberString.match(/\d/g); // regular expression is used
-          const digitsInt = digits.map(digit => parseInt(digit, 10)); //converts the digits from string format to int format inside the array
-
-          // Multiply all of the digits together, one by one
-          var digitsProduct = 1;
-          digitsInt.forEach(function(element){
-                digitsProduct = digitsProduct * element;
-              });
-          return digitsProduct;
-        }
-
-        // A test function to add an element to a list 
-        function addItemToList(itemText) {
-
-            if (itemText) {
-                // Get a reference to the <ul> element
-                let myList = document.getElementById("calculusDetailsList");
-
-                // Create a new <li> element
-                let newItem = document.createElement("li");
-
-                // Set the content of the <li> element
-                newItem.textContent = itemText;
-
-                // Append the <li> element to the <ul> element
-                myList.appendChild(newItem);
-            }
-        }    
-
-      </script>
-
-    </main>
-    <footer></footer>
-  </body>
 </html>
