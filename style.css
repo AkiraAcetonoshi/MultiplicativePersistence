@@ -116,14 +116,14 @@ main {
     background-color: inherit;
     font-family: inherit;
     font-size: inherit;
-    border:none;
+    border: none;
     border-radius: inherit;
-    color:inherit;
+    color: inherit;
     max-width: 100%;
 }
 
 .screen input:focus-visible {
-    padding:none;
+    padding: none;
 }
 
 
