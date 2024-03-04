@@ -6,13 +6,10 @@
     --light: rgba(250, 245, 242, 0.938);
     --dark: #14030d;
 
-<<<<<<< HEAD
     --button-sizing-unit: 5vw;
     --button-gap: 2vw;
-=======
     --button-sizing-unit: 6vh;
     --button-gap: 2vh;
->>>>>>> 7cb1e5a (Bizarre behaviour on the buttons)
     --button-font: ;
     --screen-font: 'Seven Segment', sans-serif;
     --screen-font-size: 2vw;
