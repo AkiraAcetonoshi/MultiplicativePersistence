@@ -1,13 +1,18 @@
 /* GLOBAL VARIABLES */
 :root {
 
-    --main-color: #3537b9;
+    --main-color: #3537b9; 
     --secondary-color: #f79d26;
     --light: rgba(250, 245, 242, 0.938);
     --dark: #14030d;
 
+<<<<<<< HEAD
     --button-sizing-unit: 5vw;
     --button-gap: 2vw;
+=======
+    --button-sizing-unit: 6vh;
+    --button-gap: 2vh;
+>>>>>>> 7cb1e5a (Bizarre behaviour on the buttons)
     --button-font: ;
     --screen-font: 'Seven Segment', sans-serif;
     --screen-font-size: 2vw;
@@ -26,7 +31,7 @@
 
 main {
     display: grid;
-    grid-template: 1fr / 1fr 3fr;
+    grid-template: 1fr / 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
 }
@@ -46,9 +51,12 @@ main {
 .calculator {
     align-self: center;
     justify-self: center;
-    max-width: 70%;
+    max-height : 80vh;
     border-radius: calc(var(--button-sizing-unit) / 2);
-    background-color: #606060;
+    /* background-color: #606060; */
+    background-color: #027F97;
+    border-color: #0B657B;
+    border: 2px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: var(--button-gap);
@@ -62,20 +70,31 @@ main {
     width: var(--button-sizing-unit);
     height: var(--button-sizing-unit);
     border-radius: calc(var(--button-sizing-unit) / 3);
-    background-color: #8F8F8F;
+    /* background-color: #8F8F8F; */
+    background-color: #323332;
+    border: 0px;
     color: white;
     font-size: calc(var(--button-sizing-unit) * .6);
     display:flex;
     justify-content: center;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transform: scale(1);
+    transition-property: transform;
+    transition-duration: .3s;
+    transition-timing-function: ease;
 }
 
 .calculator-button:hover {
     box-shadow: none;
+    transform: scale(1.2);
 }
 
-#multiplyButton {
+.calculator-button:active {
+    transform: scale(1.1);
+}
+
+#check-button {
     grid-column: span 2;
     width: calc(var(--button-sizing-unit) * 2 + var(--button-gap));
 }
@@ -93,10 +112,7 @@ main {
     color: var(--screen-font-color)
 }
 
-/* Remove the dots from the UL */
-.screen ul {
-    list-style-type: none;
-}
+
 
 /* Make the input box blend in in the screen */
 .screen input{
@@ -106,4 +122,24 @@ main {
     border:none;
     border-radius: inherit;
     color:inherit;
+    max-width: 100%;
+}
+
+.screen input:focus-visible {
+    padding:none;
+}
+
+
+
+/* Paper sheet */
+
+/* Remove the dots from the UL */
+.paper ul {
+    list-style-type: none;
+}
+
+.paper {
+    background-image: url("./americanPaper.png");
+    height: 70vh;
+    width: 45vh;
 }
