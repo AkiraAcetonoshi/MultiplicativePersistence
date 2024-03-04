@@ -19,7 +19,6 @@ const button7 = document.getElementById("button-7");
 const button8 = document.getElementById("button-8");
 const button9 = document.getElementById("button-9");
 
-alert(button0);
 
 //const Button0 = document.getElementById("Button0");
 
@@ -82,7 +81,7 @@ multiplyButton.addEventListener("click", function () {
             // Split the input string into an array of characters
             let calculusTextDigits = calculusText.split('');
             // Join the characters with "x" between them
-            calculusText = calculusTextDigits.join(' * ');
+            calculusText = calculusTextDigits.join(' x ');
             calculusText = calculusText + " = ";
             calculusText = calculusText + sequenceOfNumbers[i + 1].toString();
             addItemToList(calculusText);
@@ -166,7 +165,6 @@ function appendDigit(number, digit) {
         newNumber = Number(String(number) + String(digit));
     } else {
         // Handle the case where the input is not a valid number
-        resultParagraph.textContent = "NULL";
         newNumber = digit;
     }
     return newNumber;
